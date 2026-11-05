@@ -730,6 +730,93 @@
       box-shadow: 0 10px 35px rgba(226, 253, 82, 0.5);
     }
 
+    /* Realistic v1.2.0 Floating Widget in Hero Mock */
+    .mock-floating-widget {
+      position: absolute;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      background: #0d1117;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), 0 0 24px rgba(46, 160, 67, 0.25);
+      border-radius: var(--radius-pill);
+      padding: 0.45rem 0.6rem 0.45rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all var(--transition-smooth);
+    }
+    .mock-floating-widget:hover {
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 30px rgba(46, 160, 67, 0.45);
+      border-color: rgba(46, 160, 67, 0.6);
+      transform: translateY(-2px);
+    }
+    .mock-widget-tags {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .mock-pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #2ea043;
+      box-shadow: 0 0 8px #2ea043;
+      display: inline-block;
+      animation: pulseGreen 2s infinite;
+    }
+    @keyframes pulseGreen {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+    .mock-widget-name {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: #f0f6fc;
+      letter-spacing: -0.2px;
+    }
+    .mock-widget-badge {
+      font-size: 0.7rem;
+      background: #21262d;
+      border: 1px solid #30363d;
+      padding: 1px 6px;
+      border-radius: 4px;
+      line-height: 1.3;
+    }
+    .mock-widget-push-btn {
+      background: #238636;
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 0.45rem 1rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(35, 134, 54, 0.4);
+      transition: all var(--transition-fast);
+    }
+    .mock-widget-push-btn:hover {
+      background: #2ea043;
+      box-shadow: 0 6px 20px rgba(46, 160, 67, 0.6);
+    }
+    @media (max-width: 640px) {
+      .mock-floating-widget {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.35rem 0.5rem 0.35rem 0.75rem;
+        gap: 0.5rem;
+      }
+      .mock-widget-tags .mock-widget-badge:nth-child(n+4) {
+        display: none;
+      }
+    }
+
     /* Mock Commit Card */
     .mock-commit-notification {
       margin-top: 1.25rem;
@@ -974,6 +1061,84 @@
       font-size: 0.95rem;
       color: var(--text-muted);
       line-height: 1.65;
+    }
+
+    /* Tech Deep Dive Architecture Card (v1.2.0) */
+    .tech-deep-dive-card {
+      margin-top: 2rem;
+      background: linear-gradient(135deg, rgba(22, 27, 34, 0.85), rgba(13, 17, 23, 0.95));
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 35px rgba(0, 240, 255, 0.08);
+    }
+    .tech-deep-dive-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-neon), transparent);
+    }
+    .tech-deep-dive-header {
+      max-width: 760px;
+      margin-bottom: 2rem;
+    }
+    .tech-deep-dive-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 800;
+      margin: 0.75rem 0 0.5rem;
+      color: #fff;
+    }
+    .tech-deep-dive-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .tech-pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .tech-pillars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .tech-pillar-item {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: all var(--transition-smooth);
+    }
+    .tech-pillar-item:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 240, 255, 0.15);
+    }
+    .tech-pillar-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+    .tech-pillar-item h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+    .tech-pillar-item p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
     }
 
     /* ==========================================================================
@@ -1777,13 +1942,19 @@
                 <div class="editor-row"><span class="ed-num">8</span><span class="ed-code">            lookup[n] = i</span></div>
               </div>
 
-              <!-- Injected Interactive Button -->
-              <button class="floating-mock-push" id="mock-push-btn" title="Click to test live commit animation!">
-                <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                  <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
-                </svg>
-                <span>Push to GitHub</span>
-              </button>
+              <!-- Injected Realistic v1.2.0 Floating Widget -->
+              <div class="mock-floating-widget" id="mock-floating-widget">
+                <div class="mock-widget-tags">
+                  <span class="mock-pulse-dot"></span>
+                  <span class="mock-widget-name">CodePush</span>
+                  <span class="mock-widget-badge mono" style="color:#58a6ff;">GFG</span>
+                  <span class="mock-widget-badge mono" style="color:#7ee787;">python3</span>
+                  <span class="mock-widget-badge mono" style="color:#8b949e;">8L</span>
+                </div>
+                <button class="mock-widget-push-btn" id="mock-push-btn" title="Click to test live commit animation!">
+                  <span>🎉 Push Solved Code</span>
+                </button>
+              </div>
 
               <!-- Commit Success Card -->
               <div class="mock-commit-notification" id="mock-commit-card">
@@ -1968,6 +2139,43 @@
             </p>
           </div>
         </div>
+
+        <!-- Deep Inspection Engine Spotlight Card (v1.2.0) -->
+        <div class="tech-deep-dive-card">
+          <div class="tech-deep-dive-header">
+            <div class="sparkle-tag" style="border-color:rgba(0,240,255,0.4); color:var(--accent-cyan); background:rgba(0,240,255,0.1);">✦ Deep Code Engine (v1.2.0)</div>
+            <h3>How CodePush Captures 100% of Your Code Without Truncation</h3>
+            <p>
+              Competitive coding platforms use virtualized code editors (Monaco, Ace, CodeMirror 6) that remove invisible code lines from the DOM. Standard Chrome extensions only scrape HTML, causing long solutions to be cut off. CodePush bypasses this with a direct in-memory execution bridge:
+            </p>
+          </div>
+
+          <div class="tech-pillars-grid">
+            <div class="tech-pillar-item">
+              <div class="tech-pillar-icon">🧠</div>
+              <h4>Direct Monaco Model Inspection</h4>
+              <p>
+                Uses <code>page-bridge.js</code> running directly in the page's execution context to query <code>window.monaco.editor.getModels()</code>, retrieving the complete, un-truncated solution regardless of file length or scroll position.
+              </p>
+            </div>
+
+            <div class="tech-pillar-item">
+              <div class="tech-pillar-icon">⚡</div>
+              <h4>Real-Time Keystroke Sync</h4>
+              <p>
+                Debounced change listeners mirror your editor changes instantly. The floating pill updates its line count badge live, and the side panel stays continuously in sync with the active problem tab.
+              </p>
+            </div>
+
+            <div class="tech-pillar-item">
+              <div class="tech-pillar-icon">🏆</div>
+              <h4>Auto-Verdict Detection</h4>
+              <p>
+                A high-speed DOM observer watches for <em>"Problem Solved Successfully"</em>, <em>"Accepted"</em>, or <em>"100/100"</em> submission verdicts, immediately turning the floating widget into a celebratory one-click push badge.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2147,6 +2355,9 @@
             </div>
 
             <div class="sidepanel-body">
+              <div style="display:flex;align-items:center;gap:6px;font-size:0.75rem;color:#7ee787;padding:6px 10px;background:rgba(46,160,67,0.12);border:1px solid rgba(46,160,67,0.3);border-radius:6px;margin-bottom:0.75rem;">
+                <span>⚡ Auto-detected: <b>GeeksforGeeks</b> • 8 lines • Solved 🎉</span>
+              </div>
               <div>
                 <label style="font-size:0.8rem; color:var(--text-muted); font-weight:700; display:block; margin-bottom:0.4rem;">GitHub Personal Access Token</label>
                 <div class="copy-snippet-bar" style="margin-top:0;">
@@ -2198,23 +2409,23 @@
             <div class="workflow-step-num">01</div>
             <h3>Solve on Any Platform</h3>
             <p>
-              Open any problem on GeeksforGeeks, HackerRank, or CodeChef. Solve the problem in your favorite programming language and submit until accepted.
+              Open any problem on GeeksforGeeks, HackerRank, CodeChef, or LeetCode. Write and submit your solution in any supported programming language.
             </p>
           </div>
 
           <div class="workflow-step-card">
             <div class="workflow-step-num">02</div>
-            <h3>Click "Push to GitHub"</h3>
+            <h3>Smart Auto-Detection</h3>
             <p>
-              Click the floating button injected on the problem page, or open the side panel (title, difficulty, language, and code are auto-filled and editable).
+              CodePush automatically captures the problem title, difficulty, language, and complete code via the in-memory engine. When tests pass, the floating pill glows: <strong>🎉 Push Solved Code</strong>!
             </p>
           </div>
 
           <div class="workflow-step-card">
             <div class="workflow-step-num">03</div>
-            <h3>Direct Commit Link</h3>
+            <h3>One-Click Commit Link</h3>
             <p>
-              Press "Push to GitHub" and you'll immediately receive a direct link to the commit on your GitHub repository.
+              Press the floating button or open the side panel. CodePush commits directly to your GitHub repository and hands you a live commit link.
             </p>
           </div>
         </div>
@@ -2295,6 +2506,7 @@ coding-solutions/
               <span class="mono" style="background:var(--bg-surface-elevated); padding:0.35rem 0.75rem; border-radius:var(--radius-pill); font-size:0.78rem; border:1px solid var(--border-color); color:var(--accent-cyan);">*://*.geeksforgeeks.org/*</span>
               <span class="mono" style="background:var(--bg-surface-elevated); padding:0.35rem 0.75rem; border-radius:var(--radius-pill); font-size:0.78rem; border:1px solid var(--border-color); color:var(--accent-cyan);">*://*.hackerrank.com/*</span>
               <span class="mono" style="background:var(--bg-surface-elevated); padding:0.35rem 0.75rem; border-radius:var(--radius-pill); font-size:0.78rem; border:1px solid var(--border-color); color:var(--accent-cyan);">*://*.codechef.com/*</span>
+              <span class="mono" style="background:var(--bg-surface-elevated); padding:0.35rem 0.75rem; border-radius:var(--radius-pill); font-size:0.78rem; border:1px solid var(--border-color); color:var(--accent-cyan);">*://*.leetcode.com/*</span>
             </div>
           </div>
         </div>
@@ -2340,11 +2552,11 @@ coding-solutions/
           <!-- FAQ 3 -->
           <details class="faq-accordion-item">
             <summary class="faq-header">
-              <span>Which programming languages are supported?</span>
+              <span>Which programming languages and platforms are supported?</span>
               <span class="faq-circle-icon">+</span>
             </summary>
             <div class="faq-content">
-              All languages supported by GeeksforGeeks, HackerRank, and CodeChef are supported. CodePush automatically maps the detected language to its standard file extension (e.g. <code>.py</code> for Python, <code>.cpp</code> for C++, <code>.java</code> for Java, <code>.js</code> for JavaScript, <code>.c</code> for C, <code>.go</code> for Go, <code>.rs</code> for Rust, etc.).
+              All languages supported by GeeksforGeeks, HackerRank, CodeChef, and LeetCode are supported. CodePush automatically maps the detected language to its standard file extension (e.g. <code>.py</code> for Python, <code>.cpp</code> for C++, <code>.java</code> for Java, <code>.js</code> for JavaScript, <code>.c</code> for C, <code>.go</code> for Go, <code>.rs</code> for Rust, <code>.ts</code> for TypeScript, etc.).
             </div>
           </details>
 
@@ -2378,6 +2590,28 @@ coding-solutions/
             </summary>
             <div class="faq-content">
               Yes! Microsoft Edge, Brave, Opera, Arc, and Vivaldi all share the Chromium engine. Simply open <code>edge://extensions</code> or <code>brave://extensions</code>, turn on Developer Mode, and click "Load unpacked".
+            </div>
+          </details>
+
+          <!-- FAQ 7 -->
+          <details class="faq-accordion-item">
+            <summary class="faq-header">
+              <span>How does automatic platform and code detection work?</span>
+              <span class="faq-circle-icon">+</span>
+            </summary>
+            <div class="faq-content">
+              CodePush runs a dedicated dual-engine system. As you browse, it recognizes the coding platform (GeeksforGeeks, HackerRank, CodeChef, or LeetCode) and injects a lightweight main-world bridge (<code>page-bridge.js</code>) that directly queries the in-memory editor models (Monaco Editor, Ace, CodeMirror). This ensures 100% of your code is captured without missing lines caused by virtual scrolling.
+            </div>
+          </details>
+
+          <!-- FAQ 8 -->
+          <details class="faq-accordion-item">
+            <summary class="faq-header">
+              <span>How does CodePush know when my problem is solved?</span>
+              <span class="faq-circle-icon">+</span>
+            </summary>
+            <div class="faq-content">
+              A built-in DOM observer continuously monitors submission verdict elements on each platform (such as <em>"Problem Solved Successfully"</em> on GFG, <em>"Accepted"</em> on LeetCode/CodeChef, or <em>"Congratulations!"</em> on HackerRank). Once all test cases pass, the floating pill widget automatically updates to <strong>🎉 Push Solved Code</strong> and notifies you that your code is verified and ready to commit.
             </div>
           </details>
 
@@ -2654,7 +2888,7 @@ coding-solutions/
       if (mockPushBtn && mockCommitCard) {
         mockPushBtn.addEventListener("click", () => {
           mockPushBtn.style.transform = "scale(0.95)";
-          mockPushBtn.innerHTML = `<span>Pushing to GitHub...</span>`;
+          mockPushBtn.innerHTML = `<span>⏳ Pushing...</span>`;
           
           setTimeout(() => {
             const randomHex = Math.random().toString(16).substring(2, 9);
@@ -2664,16 +2898,12 @@ coding-solutions/
             mockCommitCard.style.boxShadow = "0 0 25px var(--accent-neon-glow)";
             
             mockPushBtn.style.transform = "";
-            mockPushBtn.innerHTML = `<span>Pushed! (#${randomHex})</span>`;
+            mockPushBtn.innerHTML = `<span>✅ Pushed! (#${randomHex})</span>`;
             showToast(`Simulated commit #${randomHex} pushed to coding-solutions!`);
             
             setTimeout(() => {
-              mockPushBtn.innerHTML = `
-                <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                  <path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/>
-                </svg>
-                <span>Push to GitHub</span>
-              `;
+              mockPushBtn.innerHTML = `<span>🎉 Push Solved Code</span>`;
+              mockCommitCard.style.boxShadow = "";
             }, 3000);
           }, 600);
         });
