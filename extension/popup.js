@@ -3,6 +3,7 @@ const PLATFORMS = [
   { id: "GFG", label: "GeeksforGeeks", folder: "GeeksforGeeks" },
   { id: "HackerRank", label: "HackerRank", folder: "HackerRank" },
   { id: "CodeChef", label: "CodeChef", folder: "CodeChef" },
+  { id: "LeetCode", label: "LeetCode", folder: "LeetCode" },
 ];
 const LANGUAGES = [
   "cpp",
@@ -16,6 +17,10 @@ const LANGUAGES = [
   "kotlin",
   "ruby",
   "swift",
+  "rust",
+  "php",
+  "dart",
+  "scala",
   "sql",
   "other",
 ];
@@ -31,8 +36,11 @@ function langLabel(l) {
 
 function init() {
   const platformSel = $("platform");
+  platformSel.innerHTML = "";
   for (const p of PLATFORMS) platformSel.add(new Option(p.label, p.id));
+
   const langSel = $("language");
+  langSel.innerHTML = "";
   for (const l of LANGUAGES) langSel.add(new Option(langLabel(l), l));
 
   loadState();
@@ -74,15 +82,11 @@ async function loadState() {
   }
 
   refreshAutofill();
-  // The panel stays open while you browse — keep following the active tab
-  // so opening a different problem page refills the form automatically.
   setInterval(refreshAutofill, 2000);
   document.addEventListener("visibilitychange", refreshAutofill);
 }
 
-// Auto-fill from the problem page in the active tab. A different problem
-// refills the whole form; the same problem keeps code and language in sync
-// with the site's editor until you type into the panel's code box yourself.
+// Auto-fill from the problem page in the active tab.
 let autoUrl = null;
 let codeTouched = false;
 
@@ -94,21 +98,42 @@ async function refreshAutofill() {
     const res = await chrome.tabs
       .sendMessage(tab.id, { type: "getProblem" })
       .catch(() => null);
-    if (!res || !res.problem || !res.problem.url) return;
+    if (!res || !res.problem || !res.problem.url) {
+      const banner = $("autodetect-status");
+      if (banner) banner.hidden = true;
+      return;
+    }
+
     const p = res.problem;
+    const banner = $("autodetect-status");
+    if (banner) {
+      banner.hidden = false;
+      const lines = p.lineCount || (p.code ? p.code.split("\n").length : 0);
+      banner.innerHTML = `<span>⚡ Auto-detected: <b>${p.platformLabel || p.platform}</b> • ${lines} lines ${p.isSolved ? "• <b>Solved 🎉</b>" : ""}</span>`;
+    }
+
     if (p.url !== autoUrl) {
       autoUrl = p.url;
       codeTouched = false;
       fillForm(p);
       return;
     }
-    if (codeTouched) return;
-    if (p.code && p.code.trim() && p.code !== $("code").value) $("code").value = p.code;
-    if (p.language && $("language").value !== p.language) {
-      const opt = [...$("language").options].find((o) => o.value === p.language);
-      if (opt) $("language").value = p.language;
+
+    if (!codeTouched) {
+      if (p.code && p.code.trim() && p.code !== $("code").value) {
+        $("code").value = p.code;
+      }
+      if (p.language && $("language").value !== p.language) {
+        const opt = [...$("language").options].find((o) => o.value === p.language);
+        if (opt) $("language").value = p.language;
+      }
+      if (p.title && !$("title").value) {
+        $("title").value = p.title;
+      }
     }
-  } catch {}
+  } catch (e) {
+    console.debug("CodePush refreshAutofill notice:", e);
+  }
 }
 
 function fillForm(p) {

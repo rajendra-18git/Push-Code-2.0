@@ -1,1 +1,73 @@
-{"manifest_version": 3, "name": "CodePush — Solved Problems to GitHub", "version": "1.1.0", "description": "Push your solved problems from GeeksforGeeks, HackerRank and CodeChef straight to your GitHub repository, organised by platform.", "permissions": ["storage", "activeTab", "sidePanel"], "host_permissions": ["https://api.github.com/*", "https://www.geeksforgeeks.org/*", "https://practice.geeksforgeeks.org/*", "https://www.hackerrank.com/*", "https://www.codechef.com/*"], "background": {"service_worker": "background.js"}, "action": {"default_title": "CodePush — open panel", "default_icon": {"48": "icon.png", "128": "icon.png"}}, "side_panel": {"default_path": "sidepanel.html"}, "content_scripts": [{"matches": ["https://www.geeksforgeeks.org/*", "https://practice.geeksforgeeks.org/*", "https://www.hackerrank.com/*", "https://www.codechef.com/*"], "js": ["content.js"], "run_at": "document_idle"}], "icons": {"48": "icon.png", "128": "icon.png"}}
+{
+  "manifest_version": 3,
+  "name": "CodePush — Solved Problems to GitHub",
+  "version": "1.2.0",
+  "description": "Automatically detects the coding platform (GeeksforGeeks, HackerRank, CodeChef, LeetCode), extracts your written code and language, and pushes solved solutions to your GitHub repository.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*",
+    "https://www.geeksforgeeks.org/*",
+    "https://practice.geeksforgeeks.org/*",
+    "https://www.hackerrank.com/*",
+    "https://www.codechef.com/*",
+    "https://leetcode.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "CodePush — open panel",
+    "default_icon": {
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.geeksforgeeks.org/*",
+        "https://practice.geeksforgeeks.org/*",
+        "https://www.hackerrank.com/*",
+        "https://www.codechef.com/*",
+        "https://leetcode.com/*"
+      ],
+      "js": ["page-bridge.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://www.geeksforgeeks.org/*",
+        "https://practice.geeksforgeeks.org/*",
+        "https://www.hackerrank.com/*",
+        "https://www.codechef.com/*",
+        "https://leetcode.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["page-bridge.js", "icon.png"],
+      "matches": [
+        "https://www.geeksforgeeks.org/*",
+        "https://practice.geeksforgeeks.org/*",
+        "https://www.hackerrank.com/*",
+        "https://www.codechef.com/*",
+        "https://leetcode.com/*"
+      ]
+    }
+  ],
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}

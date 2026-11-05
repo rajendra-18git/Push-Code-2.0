@@ -94,7 +94,7 @@ async function ensureRepo(token, repoName, isPrivate) {
         name: repoName,
         private: !!isPrivate,
         description:
-          "Solutions to coding problems from GeeksforGeeks, HackerRank and CodeChef — auto-committed with CodePush.",
+          "Solutions to coding problems from GeeksforGeeks, HackerRank, CodeChef and LeetCode — auto-committed with CodePush.",
       }),
     });
     if (!create.ok && create.status !== 422) throw await apiError(create);
